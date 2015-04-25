@@ -2,7 +2,7 @@ import requests
 import os
 
 def bet(args):
-	usage = 'Usage: !bet <bet> <username>'
+	usage = 'Usage: !bet <bet>'
 	true = 0
 	bet = args[0]
 	username = args[1]
@@ -13,7 +13,7 @@ def bet(args):
 	while True:
 		f = open('semaphore.txt','r')
 		line = f.readline()
-		if line == "":
+		if line.strip() == '':
 			break
 
 	f = open('semaphore.txt','w')
@@ -38,6 +38,6 @@ def bet(args):
 	elif true == 2: 
 		return username + " has already voted"		
 	else:		
-		return username + ": vote counted"
+		return "nothing"
 
 	

@@ -68,7 +68,7 @@ class Roboraj:
 							result = commands.pass_to_function(command, args)
 							commands.update_last_used(command, channel)
 
-							if result:
+							if result != "nothing":
 								resp = '%s' % result
 								pbot(resp, channel)
 								irc.send_message(channel, resp)
@@ -88,6 +88,6 @@ class Roboraj:
 
 						resp = '%s' % commands.get_return(command)
 						commands.update_last_used(command, channel)
-
-						pbot(resp, channel)
-						irc.send_message(channel, resp)
+						if resp != "nothing":
+							pbot(resp, channel)
+							irc.send_message(channel, resp)
