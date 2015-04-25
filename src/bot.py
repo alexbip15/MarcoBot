@@ -51,7 +51,7 @@ class MarcoBot:
                 if commands.is_valid_command(message) or commands.is_valid_command(message.split(' ')[0]):
                     command = message
 
-                    if commands.is_protected(command) \
+                    if commands.is_protected(message.split(' ')[0]) \
                                     and not username in channel_runtime.of(channel).moderators:
                                 continue
 
