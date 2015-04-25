@@ -64,8 +64,8 @@ class MarcoBot:
                                     command, username),
                                     channel
                                 )"""
-                            args.append(username)
-                            result = commands.pass_to_function(command, args)
+                            #args.append(username)
+                            result = commands.pass_to_function(command, args, username)
                             commands.update_last_used(command, channel)
 
                             if result != "nothing":
