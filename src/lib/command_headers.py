@@ -3,12 +3,14 @@ from src.config.config import *
 commands = {
     '!test': {
         'limit': 30,
+        'protected': True,
         'return': 'This is a test!'
     },
 
     '!startbets': {
         'limit': 0,
         'argc': 0,
+        'protected': True,
         'return': 'command'
     },
 
@@ -21,12 +23,14 @@ commands = {
     '!endbets': {
         'limit': 0,
         'argc': 0,
+        'protected': True,
         'return': 'command'
     },
 
     '!winner': {
         'limit': 0,
         'argc': 1,
+        'protected': True,
         'return': 'command'
     }
 }

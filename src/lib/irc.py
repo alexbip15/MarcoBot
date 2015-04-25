@@ -5,6 +5,7 @@ import thread
 
 from functions_general import *
 import cron
+from src.lib.refresh_moderators import refresh_moderators
 
 
 class irc:
@@ -76,6 +77,8 @@ class irc:
             if channel in self.config['cron']:
                 if self.config['cron'][channel]['run_cron']:
                     thread.start_new_thread(cron.cron(self, channel).run, ())
+                if self.config['cron'][channel]['refresh_moderators']:
+                    thread.start_new_thread(refresh_moderators(channel).run, ())
 
         self.join_channels(self.channels_to_string(self.config['channels']))
 
