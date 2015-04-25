@@ -1,9 +1,9 @@
 import os
 from src import command_runtime
 
-def bet(args, asking_user):
+def bet(args, asking_user, channel):
     if not command_runtime.bets_started:
-        return "Bets not started"
+        return channel + "Bets not started"
 
     try:
         asked_bet = int(args[0])

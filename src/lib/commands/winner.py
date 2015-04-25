@@ -1,7 +1,7 @@
 from src import command_runtime
 
 
-def winner(args, asking_user):
+def winner(args, asking_user, channel):
     if command_runtime.bets_started:
         return "Bets not ended!"
 

@@ -65,10 +65,10 @@ class MarcoBot:
                                     channel
                                 )"""
                             #args.append(username)
-                            result = commands.pass_to_function(command, args, username)
+                            result = commands.pass_to_function(command, args, username, channel)
                             commands.update_last_used(command, channel)
 
-                            if result != "nothing":
+                            if result:
                                 resp = '%s' % result
                                 pbot(resp, channel)
                                 irc.send_message(channel, resp)

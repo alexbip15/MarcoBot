@@ -51,17 +51,10 @@ def check_returns_function(command):
         return True
 
 
-def pass_to_function(command, args, asking_user):
+def pass_to_function(command, args, asking_user, channel):
     command = command.replace('!', '')
 
     module = importlib.import_module('src.lib.commands.%s' % command)
     function = getattr(module, command)
 
-    if args and asking_user:
-        # need to reference to src.lib.commands.<command
-        return function(args, asking_user)
-    elif args and not asking_user:
-        return function(args)
-    else:
-        # need to reference to src.lib.commands.<command
-        return function()
+    return function(args, asking_user, channel)

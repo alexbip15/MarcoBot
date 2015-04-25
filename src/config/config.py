@@ -3,7 +3,8 @@ global config
 config = {  # details required to login to twitch IRC server
             'server': 'irc.twitch.tv',
             'port': 6667,
-            'channels': ['#marco8641', '#alexbip15'],  # if set to true will display any data received
+            #'channels': ['#marco8641', '#alexbip15'],  # if set to true will display any data received
+            'channels': ['#loadlow'],  # if set to true will display any data received
             'debug': False,  # if set to true will log all messages from all channels  # todo
             'cron': {
                 '#marco8641': {

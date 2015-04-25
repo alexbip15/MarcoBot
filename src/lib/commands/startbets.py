@@ -2,7 +2,7 @@
 from src import command_runtime
 
 
-def startbets(args, asking_user):
+def startbets(args, asking_user, channel):
     if command_runtime.bets_started:
         return "Bets already started!"
     else:
