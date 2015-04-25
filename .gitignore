@@ -2,4 +2,4 @@
 .gradle
 .idea
 *.pyc
-src/config/twitch_credentials.py
+twitch_credentials.py
