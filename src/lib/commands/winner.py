@@ -1,13 +1,14 @@
-import requests
+def winner(args, asking_user, channelRuntime):
+    if channelRuntime.bets_started:
+        return "Bets not ended!"
 
-def winner(args):
-	winner = args[0] + "\n"
-	with open('log.txt', 'r') as inp:
-		for line in inp:
-			if line == "bets started":
-				return "Bets not ended!"
-	with open('bets.txt','r') as input_f:
-		for line in input_f:
-			if line.split(' ')[1] == winner:
-				return line.split(' ')[0] + " is the winner!"
-	return "No winners"
+    try:
+        winner_bets = int(args[0])
+        if winner_bets < 0 or winner_bets > 99 : raise ValueError()
+    except ValueError:
+        return "Bet must be a number between 0 and 99"
+
+    if channelRuntime.bets_subscriptions.has_key(winner_bets):
+        return channelRuntime.bets_subscriptions[winner_bets] + " is the winner!"
+    else:
+        return "No winners"

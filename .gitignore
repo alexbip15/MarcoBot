@@ -1,0 +1,8 @@
+.DS_Store
+.gradle
+.idea
+*.pyc
+twitch_credentials.py
+src/config/twitch_credentials.py
+
+src/config/twitch_credentials.py

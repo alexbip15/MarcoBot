@@ -1,43 +1,18 @@
-import requests
 import os
 
-def bet(args):
-	usage = 'Usage: !bet <bet>'
-	true = 0
-	bet = args[0]
-	username = args[1]
-	with open('log.txt', 'r') as input_f:
-		for line in input_f:
-			if line != "bets started":
-				return "Bets not started"
-	while True:
-		f = open('semaphore.txt','r')
-		line = f.readline()
-		if line.strip() == '':
-			break
+def bet(args, asking_user, channelRuntime):
+    if not channelRuntime.bets_started:
+        return "Bets not started"
 
-	f = open('semaphore.txt','w')
-	f.write("lock")
-	with open('bets.txt','r') as input_f:
-		with open('bets_n.txt', 'w') as output:
-			for line in input_f:
-				if line.split(' ')[1] == bet:
-					true = 1
-				elif line.split(' ')[0] == username:
-					true = 2
-				output.write(line)
-			if true != 1 and true != 2:
-				output.write(username + " " + bet )
-				output.write("\n")
-	os.remove('bets.txt')
-	os.rename('bets_n.txt', 'bets.txt')
-	f = open('semaphore.txt', 'r+')
-	f.truncate()
-	if true == 1:
-		return bet + " has already been voted for"
-	elif true == 2: 
-		return username + " has already voted"		
-	else:		
-		return "nothing"
+    try:
+        asked_bet = int(args[0])
+        if asked_bet < 0 or asked_bet > 99 : raise ValueError()
+    except ValueError:
+        return "Bet must be a number between 0 and 99"
 
-	
+    if asking_user in channelRuntime.bets_subscriptions.values():
+        return asking_user + " has already voted"
+    elif channelRuntime.bets_subscriptions.has_key(asked_bet):
+        return str(bet) + " has already been voted for"
+    else:
+        channelRuntime.bets_subscriptions[asked_bet] = asking_user
