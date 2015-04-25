@@ -5,51 +5,40 @@ from command_headers import *
 
 
 def is_valid_command(command):
-    if command in commands:
-        return True
-
+    return command in commands
 
 def update_last_used(command, channel):
     commands[command][channel]['last_used'] = time.time()
 
-
 def get_command_limit(command):
     return commands[command]['limit']
 
-
 def is_on_cooldown(command, channel):
-    if time.time() - commands[command][channel]['last_used'] < commands[command]['limit']:
-        return True
+    return commands[command]['limit'] > 0 \
+           and time.time() - commands[command][channel]['last_used'] < commands[command]['limit']
 
+def is_protected(command):
+    return commands[command]['protected']
 
 def get_cooldown_remaining(command, channel):
     return round(commands[command]['limit'] - (time.time() - commands[command][channel]['last_used']))
 
-
 def check_has_return(command):
-    if commands[command]['return'] and commands[command]['return'] != 'command':
-        return True
-
+    return commands[command]['return'] \
+           and commands[command]['return'] != 'command'
 
 def get_return(command):
     return commands[command]['return']
 
-
 def check_has_args(command):
-    if 'argc' in commands[command]:
-        return True
-
+   return 'argc' in commands[command]
 
 def check_has_correct_args(message, command):
     message = message.split(' ')
-    if len(message) - 1 == commands[command]['argc']:
-        return True
-
+    return len(message) - 1 == commands[command]['argc']
 
 def check_returns_function(command):
-    if commands[command]['return'] == 'command':
-        return True
-
+    return commands[command]['return'] == 'command'
 
 def pass_to_function(command, args, asking_user, channel):
     command = command.replace('!', '')
