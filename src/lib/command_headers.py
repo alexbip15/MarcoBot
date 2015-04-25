@@ -6,18 +6,6 @@ commands = {
         'return': 'This is a test!'
     },
 
-    '!randomemote': {
-        'limit': 180,
-        'argc': 0,
-        'return': 'command'
-    },
-
-    '!wow': {
-        'limit': 30,
-        'argc': 3,
-        'return': 'command'
-    },
-
     '!startbets': {
         'limit': 0,
         'argc': 0,
