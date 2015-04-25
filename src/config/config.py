@@ -3,8 +3,6 @@ global config
 config = {  # details required to login to twitch IRC server
             'server': 'irc.twitch.tv',
             'port': 6667,
-            'username': 'alexbip15_bot',
-            'oauth_password': '....',  # get this from http://twitchapps.com/tmi/  # channel to join
             'channels': ['#marco8641', '#alexbip15'],  # if set to true will display any data received
             'debug': False,  # if set to true will log all messages from all channels  # todo
             'cron': {
@@ -19,6 +17,6 @@ config = {  # details required to login to twitch IRC server
                 }
             },  # if set to true will display any data received
             'log_messages': True,
-            'socket_buffer_size': 2048 # maximum amount of bytes to receive from socket - 1024-4096 recommended
+            'socket_buffer_size': 2048  # maximum amount of bytes to receive from socket - 1024-4096 recommended
             }
 

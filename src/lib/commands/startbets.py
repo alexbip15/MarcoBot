@@ -1,7 +1,5 @@
 # coding: utf8
 
-import requests
-
 
 def startbets(args):
     usage = 'Usage: !startbets <username>'

@@ -10,9 +10,9 @@ import lib.functions_commands as commands
 
 
 class MarcoBot:
-    def __init__(self, config):
+    def __init__(self, config, credentials):
         self.config = config
-        self.irc = irc_.irc(config)
+        self.irc = irc_.irc(config, credentials)
         self.socket = self.irc.get_irc_socket_object()
 
 

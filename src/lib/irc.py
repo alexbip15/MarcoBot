@@ -1,12 +1,16 @@
-import socket, re, time, sys
+import socket
+import re
+import sys
+import thread
+
 from functions_general import *
 import cron
-import thread
 
 
 class irc:
-    def __init__(self, config):
+    def __init__(self, config, credentials):
         self.config = config
+        self.credentials = credentials
 
     def check_for_message(self, data):
         if re.match(
@@ -29,9 +33,9 @@ class irc:
 
     def get_message(self, data):
         return {
-        'channel': re.findall(r'^:.+\![a-zA-Z0-9_]+@[a-zA-Z0-9_]+.+ PRIVMSG (.*?) :', data)[0],
-        'username': re.findall(r'^:([a-zA-Z0-9_]+)\!', data)[0],
-        'message': re.findall(r'PRIVMSG #[a-zA-Z0-9_]+ :(.+)', data)[0].decode('utf8')
+            'channel': re.findall(r'^:.+\![a-zA-Z0-9_]+@[a-zA-Z0-9_]+.+ PRIVMSG (.*?) :', data)[0],
+            'username': re.findall(r'^:([a-zA-Z0-9_]+)\!', data)[0],
+            'message': re.findall(r'PRIVMSG #[a-zA-Z0-9_]+ :(.+)', data)[0].decode('utf8')
         }
 
     def check_login_status(self, data):
@@ -57,9 +61,9 @@ class irc:
 
         sock.settimeout(None)
 
-        sock.send('USER %s\r\n' % self.config['username'])
-        sock.send('PASS %s\r\n' % self.config['oauth_password'])
-        sock.send('NICK %s\r\n' % self.config['username'])
+        sock.send('USER %s\r\n' % self.credentials['username'])
+        sock.send('PASS %s\r\n' % self.credentials['oauth_password'])
+        sock.send('NICK %s\r\n' % self.credentials['username'])
 
         if self.check_login_status(sock.recv(1024)):
             pp('Login successful.')

@@ -1,10 +1,7 @@
 import time
-
-from src.config.config import *
-from commands import *
-from command_headers import *
-
 import importlib
+
+from command_headers import *
 
 
 def is_valid_command(command):

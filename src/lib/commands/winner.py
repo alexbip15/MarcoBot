@@ -1,6 +1,3 @@
-import requests
-
-
 def winner(args):
     winner = args[0] + "\n"
     with open('log.txt', 'r') as inp:
