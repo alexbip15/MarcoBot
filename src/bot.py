@@ -51,16 +51,16 @@ class MarcoBot:
                 if commands.is_valid_command(message) or commands.is_valid_command(message.split(' ')[0]):
                     command = message
 
+                    if commands.is_protected(command) \
+                                    and not username in channel_runtime.of(channel).moderators:
+                                continue
+
                     if commands.check_returns_function(command.split(' ')[0]):
                         if commands.check_has_correct_args(command, command.split(' ')[0]):
                             args = command.split(' ')
                             del args[0]
 
                             command = command.split(' ')[0]
-
-                            if commands.is_protected(command) \
-                                    and not username in channel_runtime.of(channel).moderators:
-                                continue
 
                             """if commands.is_on_cooldown(command, channel):
                                 pbot('Command is on cooldown. (%s) (%s) (%ss remaining)' % (
