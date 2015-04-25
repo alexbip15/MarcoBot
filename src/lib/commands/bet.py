@@ -13,6 +13,6 @@ def bet(args, asking_user, channelRuntime):
     if asking_user in channelRuntime.bets_subscriptions.values():
         return asking_user + " has already voted"
     elif channelRuntime.bets_subscriptions.has_key(asked_bet):
-        return str(bet) + " has already been voted for"
+        return str(asked_bet) + " has already been voted for"
     else:
         channelRuntime.bets_subscriptions[asked_bet] = asking_user
