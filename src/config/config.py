@@ -6,7 +6,7 @@ config = {
 	'server': 'irc.twitch.tv',
 	'port': 6667,
 	'username': 'alexbip15_bot',
-	'oauth_password': 'oauth:1uvlesr44e49dnp7wedpuci5wu0qd7', # get this from http://twitchapps.com/tmi/
+	'oauth_password': '...', # get this from http://twitchapps.com/tmi/
 	
 	# channel to join
 	'channels': ['#marco8641', '#alexbip15'],
