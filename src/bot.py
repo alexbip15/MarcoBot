@@ -9,7 +9,7 @@ from lib.functions_general import *
 import lib.functions_commands as commands
 
 
-class Roboraj:
+class MarcoBot:
     def __init__(self, config):
         self.config = config
         self.irc = irc_.irc(config)

@@ -1,7 +1,6 @@
 import requests
 import os
 
-
 def bet(args):
     usage = 'Usage: !bet <bet>'
     true = 0
