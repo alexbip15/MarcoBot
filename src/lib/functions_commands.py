@@ -18,7 +18,7 @@ def is_on_cooldown(command, channel):
            and time.time() - commands[command][channel]['last_used'] < commands[command]['limit']
 
 def is_protected(command):
-    return commands[command]['protected']
+    return commands[command].has_key('protected') and commands[command]['protected']
 
 def get_cooldown_remaining(command, channel):
     return round(commands[command]['limit'] - (time.time() - commands[command][channel]['last_used']))
