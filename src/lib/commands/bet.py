@@ -1,9 +1,8 @@
 import os
-from src import command_runtime
 
-def bet(args, asking_user, channel):
-    if not command_runtime.bets_started:
-        return channel + "Bets not started"
+def bet(args, asking_user, channelRuntime):
+    if not channelRuntime.bets_started:
+        return "Bets not started"
 
     try:
         asked_bet = int(args[0])
@@ -11,9 +10,9 @@ def bet(args, asking_user, channel):
     except ValueError:
         return "Bet must be a number between 0 and 99"
 
-    if asking_user in command_runtime.bets_subscriptions.values():
+    if asking_user in channelRuntime.bets_subscriptions.values():
         return asking_user + " has already voted"
-    elif command_runtime.bets_subscriptions.has_key(asked_bet):
+    elif channelRuntime.bets_subscriptions.has_key(asked_bet):
         return str(bet) + " has already been voted for"
     else:
-        command_runtime.bets_subscriptions[asked_bet] = asking_user
+        channelRuntime.bets_subscriptions[asked_bet] = asking_user

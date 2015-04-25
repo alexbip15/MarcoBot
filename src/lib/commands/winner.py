@@ -1,8 +1,5 @@
-from src import command_runtime
-
-
-def winner(args, asking_user, channel):
-    if command_runtime.bets_started:
+def winner(args, asking_user, channelRuntime):
+    if channelRuntime.bets_started:
         return "Bets not ended!"
 
     try:
@@ -11,7 +8,7 @@ def winner(args, asking_user, channel):
     except ValueError:
         return "Bet must be a number between 0 and 99"
 
-    if command_runtime.bets_subscriptions.has_key(winner_bets):
-        return command_runtime.bets_subscriptions[winner_bets] + " is the winner!"
+    if channelRuntime.bets_subscriptions.has_key(winner_bets):
+        return channelRuntime.bets_subscriptions[winner_bets] + " is the winner!"
     else:
         return "No winners"

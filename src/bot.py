@@ -7,6 +7,7 @@ Developed by Aidan Thomson <aidraj0@gmail.com>
 import lib.irc as irc_
 from lib.functions_general import *
 import lib.functions_commands as commands
+from src.lib import channel_runtime
 
 
 class MarcoBot:
@@ -34,6 +35,9 @@ class MarcoBot:
             # check for ping, reply with pong
             irc.check_for_ping(data)
 
+            for channel in config['channels'] :
+                channel_runtime.of(channel)
+
             if irc.check_for_message(data):
                 message_dict = irc.get_message(data)
 
@@ -54,6 +58,10 @@ class MarcoBot:
 
                             command = command.split(' ')[0]
 
+                            if commands.is_protected(command) \
+                                    and not username in channel_runtime.of(channel).moderators:
+                                continue
+
                             """if commands.is_on_cooldown(command, channel):
                                 pbot('Command is on cooldown. (%s) (%s) (%ss remaining)' % (
                                     command, username, commands.get_cooldown_remaining(command, channel)),
@@ -64,8 +72,9 @@ class MarcoBot:
                                     command, username),
                                     channel
                                 )"""
+
                             #args.append(username)
-                            result = commands.pass_to_function(command, args, username, channel)
+                            result = commands.pass_to_function(command, args, username, channel_runtime.of(channel))
                             commands.update_last_used(command, channel)
 
                             if result:

@@ -1,9 +1,6 @@
-from src import command_runtime
-
-
-def endbets(args, asking_user, channel):
-    if not command_runtime.bets_started:
+def endbets(args, asking_user, channelRuntime):
+    if not channelRuntime.bets_started:
         return "Bets never started"
     else:
-        command_runtime.bets_started = False
+        channelRuntime.bets_started = False
         return "Bets ended! Awaiting !winner"
